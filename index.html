@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人产品与运营作品集 | 产品助理/产品运营候选人</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f4f2;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --wine-color: #7a1f3d;
+            --wine-soft: rgba(122, 31, 61, 0.14);
+            --accent-color: #111827;
+            --accent-soft: rgba(15, 23, 42, 0.12);
+            --accent-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.56);
+            --glass-border: rgba(255, 255, 255, 0.7);
+        }
+        html {
+            cursor: none;
+        }
+        body { 
+            font-family: 'Noto Sans SC', 'Source Han Sans SC', 'Source Han Sans CN', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-dark); 
+            -webkit-font-smoothing: antialiased;
+            font-weight: 400;
+        }
+        h1, h2, h3, .font-serif-title { 
+            font-family: 'Noto Sans SC', 'Source Han Sans SC', 'Source Han Sans CN', sans-serif; 
+            font-weight: 500;
+            letter-spacing: -0.03em;
+        }
+        .font-light {
+            font-weight: 400 !important;
+        }
+        .font-normal {
+            font-weight: 500 !important;
+        }
+        .font-medium {
+            font-weight: 600 !important;
+        }
+        .font-semibold,
+        .font-bold {
+            font-weight: 700 !important;
+        }
+        .font-mono-code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        a, button, [onclick], input, textarea, select {
+            cursor: none;
+        }
+        .reveal-item { 
+            opacity: 0; 
+            transform: translateY(16px); 
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: opacity, transform;
+        }
+        .reveal-item.is-visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.42));
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 24px 80px rgba(31, 41, 55, 0.08);
+        }
+        .resume-indent p {
+            text-indent: 2em;
+        }
+        .hero-minimal-stage {
+            position: relative;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-minimal-stage::before {
+            content: "";
+            position: absolute;
+            inset: 12% auto auto 50%;
+            width: 24rem;
+            height: 24rem;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.08) 62%, transparent 72%);
+            filter: blur(14px);
+            pointer-events: none;
+        }
+        .hero-center-cluster {
+            position: relative;
+            z-index: 2;
+            width: min(24rem, 82vw);
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-center-cluster:hover .hero-dropdown,
+        .hero-center-cluster:focus-within .hero-dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .hero-ghost-mark {
+            position: absolute;
+            top: -2.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(4.2rem, 10vw, 6.4rem);
+            line-height: 1;
+            color: rgba(148, 163, 184, 0.18);
+            letter-spacing: -0.08em;
+            user-select: none;
+            pointer-events: none;
+            font-weight: 200;
+        }
+        .hero-kicker {
+            font-size: 0.75rem;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: rgba(100, 116, 139, 0.72);
+        }
+        .hero-dropdown {
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: opacity 260ms ease, transform 260ms ease;
+        }
+        .hero-menu-stack {
+            margin-top: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.95rem;
+            width: 100%;
+            align-items: center;
+        }
+        .hero-menu-link {
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            color: rgba(51, 65, 85, 0.7);
+            letter-spacing: 0.01em;
+            transition: color 200ms ease, transform 200ms ease;
+        }
+        .hero-menu-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -1px;
+            width: 100%;
+            height: 1px;
+            background: rgba(15, 23, 42, 0.22);
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center center;
+            transition: transform 220ms ease;
+        }
+        .hero-menu-link:hover {
+            color: rgba(15, 23, 42, 0.92);
+            transform: translateY(-1px);
+        }
+        .hero-menu-link:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .hero-subcopy {
+            margin-top: 1.1rem;
+            max-width: 16rem;
+            font-size: 0.78rem;
+            line-height: 1.85;
+            color: rgba(100, 116, 139, 0.7);
+        }
+        .hero-corner-note {
+            position: absolute;
+            color: rgba(100, 116, 139, 0.8);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            z-index: 3;
+        }
+        .hero-corner-top {
+            top: 1.5rem;
+            right: 0.75rem;
+        }
+        .hero-corner-bottom {
+            right: 0.75rem;
+            bottom: 1rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 999px;
+            z-index: 80;
+            opacity: 0;
+            transition: opacity 180ms ease;
+        }
+        .cursor-dot {
+            width: 28px;
+            height: 28px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.55), rgba(214, 162, 175, 0.55) 58%, rgba(122, 31, 61, 0.14));
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(175, 128, 141, 0.32);
+            box-shadow: 0 8px 24px rgba(185, 150, 160, 0.24);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .cursor-ring {
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgba(122, 31, 61, 0.14);
+            transform: translate(-50%, -50%);
+            background: rgba(122, 31, 61, 0.08);
+            transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background 180ms ease, opacity 180ms ease;
+        }
+        .cursor-ring.is-hovering {
+            width: 38px;
+            height: 38px;
+            border-color: rgba(122, 31, 61, 0.2);
+            background: rgba(122, 31, 61, 0.04);
+        }
+        @media (max-width: 1024px), (pointer: coarse) {
+            html,
+            a,
+            button,
+            [onclick],
+            input,
+            textarea,
+            select {
+                cursor: auto;
+            }
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+
+        /* Image-1 Style Vector Outline Phone Mockup Frame */
+        .vector-phone-frame {
+            border: 2.5px solid rgba(255, 255, 255, 0.95);
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 4px;
+            box-shadow: 0 25px 50px -12px rgba(120, 90, 140, 0.25), 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-slate-800 selection:text-white">
+    <div id="cursor-dot" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring"></div>
+
+    <!-- Fixed Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all text-slate-900">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-[12px] tracking-[0.18em] text-slate-300 hover:text-slate-500 transition-colors">
+                [姓名]
+            </a>
+            <div class="text-[12px] text-slate-500 tracking-[0.12em]">
+                <span class="text-slate-900">cn</span>
+                <span class="mx-2 text-slate-300">/</span>
+                <span class="hover:text-slate-700 transition-colors">en</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16 pb-20">
+        <!-- Hero Section: Refined Light Banner -->
+        <section class="bg-gradient-to-b from-[#f6f4f2] via-[#fbfaf8] to-[#f7f5f3] text-slate-900 px-6 border-b border-white/70 relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-[16%] left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-white/30 rounded-full blur-3xl"></div>
+            </div>
+            <div class="hero-minimal-stage max-w-6xl mx-auto reveal-item">
+                <div class="hero-corner-note hero-corner-bottom">Top ↑</div>
+
+                <div class="hero-center-cluster">
+                    <div class="hero-ghost-mark">liao</div>
+                    <div class="hero-kicker">Product Portfolio</div>
+                    <div class="hero-dropdown opacity-100 transform-none pointer-events-auto">
+                        <div class="hero-menu-stack">
+                            <a href="#about" class="hero-menu-link">about me</a>
+                            <a href="#skills" class="hero-menu-link">skills</a>
+                            <a href="#experience" class="hero-menu-link">experience</a>
+                            <a href="#projects" class="hero-menu-link">project</a>
+                            <a href="#contact" class="hero-menu-link">contact me</a>
+                        </div>
+                    </div>
+                    <p class="hero-subcopy">
+                        土地资源管理专业背景，正在把内容运营（审核方向）、私域转化、交易运营与 AI 协同开发经验，整理成面向产品助理与产品运营岗位的作品集。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 01: Overview / Background -->
+        <section id="about" class="max-w-6xl mx-auto mt-16 px-6 reveal-item">
+            <div class="bg-white rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12 shadow-sm border border-slate-200/80 relative overflow-hidden">
+                <div class="absolute inset-y-0 left-[46%] hidden lg:block w-px bg-gradient-to-b from-transparent via-slate-100 to-transparent"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                    <div class="lg:col-span-4 space-y-10">
+                        <div class="space-y-2.5">
+                            <h2 class="text-4xl sm:text-[3rem] tracking-tight text-slate-900">About me</h2>
+                            <p class="pt-1 text-[12px] sm:text-[13px] font-mono-code uppercase tracking-[0.3em] text-slate-400">Liao Yiqi / 廖艺淇</p>
+                        </div>
+
+                        <div class="space-y-4 pt-3">
+                            <div class="w-full max-w-[18rem] aspect-[4/5] rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#f4f1ef_0%,#ebe7e4_100%)] shadow-inner overflow-hidden">
+                                <img src="profile_photo.jpg" alt="廖艺淇个人照片" class="w-full h-full object-cover object-center" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <div class="flex items-end justify-between gap-4 pb-6 border-b border-slate-100">
+                            <div class="text-[10px] font-mono-code uppercase tracking-[0.28em] text-slate-300">基础信息与背景概览</div>
+                            <div class="hidden md:block text-[11px] text-slate-300 font-light">我的背景、求职方向与能力线索</div>
+                        </div>
+
+                        <div class="space-y-10 pt-8">
+                            <div class="space-y-4">
+                                <h3 class="text-[1.05rem] tracking-[0.18em] uppercase text-slate-700">基本信息</h3>
+                                <div class="resume-indent space-y-3 text-sm text-slate-500 leading-8">
+                                    <p>我目前是曲阜师范大学土地资源管理专业大三学生，具备<strong class="font-semibold text-slate-800">信息整理、逻辑拆解和系统化思考</strong>能力。虽然不是传统产品背景，但我持续通过真实项目把这些能力迁移到<strong class="font-semibold text-slate-800">产品设计、内容理解与用户运营</strong>场景中。</p>
+                                    <p>目前的求职目标是产品助理、产品运营，以及内容产品、工具产品、用户增长等相关岗位。我希望在真实业务中参与<strong class="font-semibold text-slate-800">需求分析、方案表达、用户研究和执行落地</strong>，并通过<strong class="font-semibold text-slate-800">数据与反馈</strong>持续优化产品体验。</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h3 class="text-[1.05rem] tracking-[0.18em] uppercase text-slate-700">项目与用户理解</h3>
+                                <div class="resume-indent space-y-3 text-sm text-slate-500 leading-8">
+                                    <p>我的代表性经历包括：在<strong class="font-semibold text-slate-800">柳州江畔科技担任内容运营实习生（审核方向）</strong>，主要负责小说内容审核，并积累内容判断、标签理解和流程提效意识；独立完成<strong class="font-semibold text-slate-800">《说岛》小说分类整理与阅读量化小程序</strong>；自主搭建<strong class="font-semibold text-slate-800">Skygrove Sentinels 3D 俯视射击游戏原型</strong>，验证战斗循环、成长反馈和关卡推进。</p>
+                                    <p>我有<strong class="font-semibold text-slate-800">10+ 年网文阅读经历</strong>，对题材分类、标签表达、书评记录和阅读反馈有长期观察；常用方法与工具包括<strong class="font-semibold text-slate-800">AI Vibe Coding、飞书文档、XMind、内容打标、用户沟通和交易转化分析</strong>，并具备<strong class="font-semibold text-slate-800">SQL 基础</strong>，了解基础数据查询、筛选和分组整理。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 02: Skills Module -->
+        <section id="skills" class="max-w-6xl mx-auto mt-20 px-6 reveal-item">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-slate-200 pb-5">
+                <div>
+                    <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">02. 核心技能 / Skills & Capabilities</div>
+                    <h2 class="font-serif-title text-2xl lg:text-3xl font-medium tracking-tight text-slate-900 mt-1.5">能力模型与真实落地</h2>
+                </div>
+                <p class="text-xs text-slate-500 max-w-xs font-light">点击下方标签，在控制台屏幕中实时调阅对应技能在我的实践中的落地应用。</p>
+            </div>
+
+            <!-- Scrollable Tag Chips Container -->
+            <div class="relative mb-6">
+                <div id="skills-tags-container" class="flex gap-2 overflow-x-auto pb-2 pt-1 scrollbar-none scroll-smooth">
+                    <button onclick="selectSkill('insight')" id="tag-insight" class="skill-tag active shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-900 bg-slate-900 text-white transition-all duration-200 flex items-center gap-2 shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Vibe Coding 实操
+                    </button>
+                    <button onclick="selectSkill('prd')" id="tag-prd" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        飞书 PRD 撰写
+                    </button>
+                    <button onclick="selectSkill('content')" id="tag-content" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        内容打标与偏好
+                    </button>
+                    <button onclick="selectSkill('ecommerce')" id="tag-ecommerce" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        二次元/闲鱼电商
+                    </button>
+                    <button onclick="selectSkill('ops')" id="tag-ops" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        私域沉淀与高复购
+                    </button>
+                    <button onclick="selectSkill('ux')" id="tag-ux" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        跨界逻辑抽象
+                    </button>
+                    <button onclick="selectSkill('sql')" id="tag-sql" class="skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        SQL 基础
+                    </button>
+                </div>
+            </div>
+
+            <!-- Studio Screen Component -->
+            <div class="relative max-w-3xl mx-auto py-2">
+                <div class="relative bg-slate-200 rounded-[1.2rem] p-3 shadow-md border border-slate-300">
+                    <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-slate-400 flex items-center justify-center">
+                        <div class="w-1 h-1 rounded-full bg-slate-600"></div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg border border-slate-200 p-6 md:p-9 text-slate-900 min-h-[300px] flex flex-col justify-between relative overflow-hidden font-sans shadow-inner">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3.5">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+                                <span id="skill-screen-badge" class="ml-2 font-mono-code text-[10px] text-emerald-700 uppercase tracking-wider bg-emerald-100/90 border border-emerald-300 px-2.5 py-0.5 rounded-md font-semibold">
+                                    [AI VIBE CODING]
+                                </span>
+                            </div>
+                            <span class="font-mono-code text-[10px] text-slate-400">Capability Demo Console</span>
+                        </div>
+
+                        <div id="skill-screen-content" class="py-5 space-y-3.5 transition-all duration-200 opacity-100 transform translate-y-0">
+                            <h3 id="skill-screen-title" class="text-2xl md:text-3xl font-serif-title text-slate-900 tracking-tight">
+                                AI Vibe Coding 敏捷落地
+                            </h3>
+                            <p id="skill-screen-desc" class="text-xs md:text-sm text-slate-600 font-light leading-relaxed max-w-xl">
+                                拒绝只做纸上谈兵的文档。在独立编写小说分类与阅读量化小程序《说岛》的 PRD 后，运用 Cursor/AI 协作工具快速敲定逻辑并完成前端 MVP 敏捷构建。
+                            </p>
+                            <div id="skill-screen-highlights" class="pt-2 flex flex-wrap gap-2 text-[11px] font-mono-code text-slate-700">
+                                <span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">✓ PRD转化为代码逻辑</span>
+                                <span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">✓ 《说岛》MVP 独立开发</span>
+                                <span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">✓ 敏捷迭代思维</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-3.5 border-t border-slate-200 flex justify-between items-center text-[10px] font-mono-code text-slate-400">
+                            <span>VERIFIED BY PERSONAL PROJECTS</span>
+                            <span id="skill-screen-index" class="text-emerald-600 font-bold">01 / 06</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-300 h-2.5 rounded-b-xl mx-auto w-[102%] -mt-0.5 shadow-sm flex justify-center items-center border-t border-slate-400/40">
+                    <div class="w-16 h-0.5 bg-slate-400 rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 03: Experience Module -->
+        <section id="experience" class="max-w-6xl mx-auto mt-20 px-6 reveal-item">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-slate-200 pb-5">
+                <div>
+                    <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">03. 实践经历 / Experience</div>
+                    <h2 class="font-serif-title text-2xl lg:text-3xl font-medium tracking-tight text-slate-900 mt-1.5">内容运营实习与质量提效</h2>
+                </div>
+                <p class="text-xs text-slate-500 max-w-xs font-light">工作以小说内容审核为主，围绕质量判断、审核标准沉淀和高频问题归因，积累内容运营与流程优化经验。</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 lg:gap-8 max-w-3xl mx-auto">
+                <!-- Card 1 -->
+                <div class="group bg-white border-2 border-slate-200/90 rounded-2xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="h-1.5 bg-emerald-500 -mx-6 -mt-6 mb-4"></div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-[10px] font-mono-code font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-md">
+                                内容运营 / 审核方向
+                            </span>
+                            <span class="text-[11px] font-mono-code text-slate-400">实习经历</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif-title text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                                江畔科技小说内容运营与质量审核
+                            </h3>
+                            <p class="text-[11px] text-slate-500 font-mono-code mt-0.5">柳州江畔科技有限公司 · 内容运营实习（审核方向）</p>
+                        </div>
+
+                        <p class="text-xs text-slate-700 font-normal leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            内容运营实习期间主要负责标题、简介、标签与正文质量审核，单日处理约 300 篇，累计审核约 4000 篇，准确率约 90%。在完成审核工作的同时，也从运营与产品视角记录高频问题并思考前置优化空间。
+                        </p>
+
+                        <ul class="text-xs text-slate-600 space-y-2 font-light pt-1">
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">问题归因与标准沉淀：</strong>围绕标签不匹配、简介信息不足、正文质量不稳等高频退回场景，总结审核关注点与判断标准。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">流程提效意识：</strong>围绕“作者自证 + 审核聚焦”的思路思考前置指引与标签库优化，目标将返工率从 25% 压缩至 8%，整体审核效率提升约 20%。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-5 border-t border-slate-100 mt-5 flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">审核标准</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">标签策略</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">流程提效</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="hidden group bg-white border-2 border-slate-200/90 rounded-2xl p-6 hover:border-amber-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="h-1.5 bg-amber-500 -mx-6 -mt-6 mb-4"></div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-[10px] font-mono-code font-semibold uppercase tracking-wider text-amber-900 bg-amber-100/90 px-2.5 py-1 rounded-md">
+                                二次元/闲鱼电商
+                            </span>
+                            <span class="text-[11px] font-mono-code font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">累计交易额 ¥30,107</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif-title text-base sm:text-lg font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                                闲鱼谷子交易与双账号运营
+                            </h3>
+                            <p class="text-[11px] text-slate-500 font-mono-code mt-0.5">闲鱼平台 · 独立运营</p>
+                        </div>
+
+                        <p class="text-xs text-slate-700 font-normal leading-relaxed bg-amber-50/50 p-3.5 rounded-xl border border-amber-200/60">
+                            围绕谷子商品高溢价、信任弱和履约分散的问题，长期运营 2 个闲鱼账号并区分商品线管理。双账号累计交易额约 ¥30,107，逐步形成选品、定价、上架与售后沟通的稳定闭环。
+                        </p>
+
+                        <ul class="text-xs text-slate-600 space-y-2 font-light pt-1">
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">分账号运营与人群区分：</strong>基于不同 IP 与交易场景拆分账号，既方便商品线管理，也降低目标用户的理解成本。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">标准化交易表达：</strong>持续优化商品图、详情说明、沟通节奏与售后反馈，沉淀出更稳定的成交表达和复购维护方式。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-5 border-t border-slate-100 mt-5 flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">用户分层</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">商品表达</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">成交维护</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="hidden group bg-white border-2 border-slate-200/90 rounded-2xl p-6 hover:border-indigo-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div class="h-1.5 bg-indigo-500 -mx-6 -mt-6 mb-4"></div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-[10px] font-mono-code font-semibold uppercase tracking-wider text-indigo-900 bg-indigo-100/90 px-2.5 py-1 rounded-md">
+                                公域获客 ➔ 私域沉淀
+                            </span>
+                            <span class="text-[11px] font-mono-code font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">70+ 付费用户</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif-title text-base sm:text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                                内容获客与微信私域复购沉淀
+                            </h3>
+                            <p class="text-[11px] text-slate-500 font-mono-code mt-0.5">2025年12月 - 2026年4月集中运营</p>
+                        </div>
+
+                        <p class="text-xs text-slate-700 font-normal leading-relaxed bg-indigo-50/50 p-3.5 rounded-xl border border-indigo-200/60">
+                            以小红书为主渠道发布兴趣服务与二手交易内容，在 2025 年 12 月到 2026 年 4 月的集中运营阶段，将高意向用户沉淀到微信分组中完成沟通、成交与复购维护。
+                        </p>
+
+                        <ul class="text-xs text-slate-600 space-y-2 font-light pt-1">
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">信任建立与首次成交：</strong>通过信誉图、价格表和“先完成再付款”等方式降低首次决策门槛，促成用户从咨询到付费。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-1.5"></span>
+                                <span><strong class="font-medium text-slate-900">复购维护与长期关系：</strong>固定分组沉淀 66 位用户，70+ 付费用户中有至少 10+ 回头客，目前仍有 2 位长期合作用户。</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-5 border-t border-slate-100 mt-5 flex flex-wrap gap-1.5">
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">公域获客</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">微信私域</span>
+                        <span class="text-[10px] font-mono-code font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">高复购维护</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 04: Projects Module -->
+        <section id="projects" class="max-w-6xl mx-auto mt-20 px-6 reveal-item">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-slate-200 pb-5">
+                <div>
+                    <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">04. 项目经历 / Project Experience</div>
+                    <h2 class="font-serif-title text-2xl lg:text-3xl font-medium tracking-tight text-slate-900 mt-1.5">产品、运营与游戏项目</h2>
+                </div>
+                <p class="text-xs text-slate-500 max-w-xs font-light">从需求抽象、用户运营到可试玩产品原型，点击项目卡片查看我如何拆解问题、落地方案并持续迭代。</p>
+            </div>
+
+            <!-- Featured Project: Skygrove Sentinels -->
+            <article class="group mb-10 overflow-hidden rounded-3xl border-2 border-slate-200 bg-white shadow-sm transition-all duration-300 hover:border-amber-500 hover:shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr]">
+                    <button onclick="openGameModal()" class="relative min-h-[250px] overflow-hidden bg-slate-900 text-left lg:min-h-[360px]">
+                        <img src="skygrove-cover.jpg" alt="Skygrove Sentinels 游戏封面" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                        <div class="absolute inset-0 bg-gradient-to-tr from-slate-950/72 via-slate-900/12 to-transparent"></div>
+                        <div class="absolute left-5 top-5 flex items-center gap-2">
+                            <span class="rounded-full border border-white/35 bg-slate-950/38 px-3 py-1 text-[10px] font-mono-code font-semibold tracking-widest text-white backdrop-blur-sm">FEATURED PROJECT</span>
+                            <span class="rounded-full border border-amber-200/45 bg-amber-100/80 px-3 py-1 text-[10px] font-mono-code font-semibold tracking-widest text-amber-950">可在线试玩</span>
+                        </div>
+                        <div class="absolute bottom-5 left-5 right-5 text-white">
+                            <div class="text-[10px] font-mono-code uppercase tracking-[0.24em] text-amber-200">3D TOP-DOWN SHOOTER</div>
+                            <div class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Skygrove Sentinels</div>
+                            <div class="mt-1 text-xs text-white/75">一款围绕“战斗、掉落、成长、清关”的游戏产品原型</div>
+                        </div>
+                    </button>
+
+                    <div class="flex flex-col justify-between p-6 sm:p-8">
+                        <div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="rounded border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold tracking-widest text-amber-900">游戏策划</span>
+                                <span class="rounded border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold tracking-widest text-slate-700">产品原型</span>
+                                <span class="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold tracking-widest text-emerald-800">Three.js</span>
+                            </div>
+                            <h3 class="mt-4 font-serif-title text-2xl font-bold tracking-tight text-slate-900">3D 俯视射击生存闯关 Demo</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+                                独立设计并搭建一款明亮童话低模风格的网页游戏，围绕“移动射击 → 击杀掉落 → 拾取成长 → 随机升级 → 阶段 Boss → 进入下一关”形成可试玩的核心循环。
+                            </p>
+                            <div class="mt-5 grid grid-cols-2 gap-3 text-xs">
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                    <div class="font-mono-code text-[10px] uppercase tracking-widest text-slate-400">Core Loop</div>
+                                    <div class="mt-1 font-semibold text-slate-800">战斗 - 成长 - 闯关</div>
+                                </div>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                    <div class="font-mono-code text-[10px] uppercase tracking-widest text-slate-400">Iteration</div>
+                                    <div class="mt-1 font-semibold text-slate-800">难度与引导优化</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-wrap gap-3 border-t border-slate-100 pt-5">
+                            <button onclick="openGameModal()" class="rounded-full bg-slate-900 px-5 py-2.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-amber-600">查看项目复盘 ↗</button>
+                            <button onclick="openGameDemo()" class="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-700 transition-colors hover:border-amber-500 hover:text-amber-700">在线试玩 ↗</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Folder Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+                
+                <!-- Folder Card 1: Novel Mini Program "Shuo Dao" -->
+                <div onclick="openMacModal()" class="group cursor-pointer bg-white border-2 border-slate-200 hover:border-emerald-500 rounded-2xl p-7 transition-all duration-300 hover:shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-emerald-100 text-emerald-800 group-hover:bg-emerald-600 group-hover:text-white transition-colors px-3 py-1 rounded-full text-[10px] font-mono-code font-semibold">
+                        CLICK TO OPEN ↗
+                    </div>
+
+                    <!-- Bear Folder SVG Icon -->
+                    <div class="transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-300 my-3">
+                        <svg viewBox="0 0 200 180" class="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-md group-hover:drop-shadow-xl transition-all">
+                            <path d="M 25 35 C 20 35 15 40 15 45 L 15 150 C 15 160 25 170 35 170 L 165 170 C 175 170 185 160 185 150 L 185 55 C 185 45 175 35 165 35 L 115 35 C 110 35 105 30 100 25 L 95 20 C 90 15 85 15 80 15 L 35 15 C 25 15 25 35 25 35 Z" fill="#EFE8DA"/>
+                            <rect x="15" y="45" width="170" height="125" rx="22" fill="#FAF5EB"/>
+                            <ellipse cx="100" cy="118" rx="20" ry="14" fill="#FFFFFF"/>
+                            <circle cx="70" cy="100" r="8" fill="#1A1A1A"/>
+                            <circle cx="130" cy="100" r="8" fill="#1A1A1A"/>
+                            <path d="M 96 112 C 96 108 104 108 104 112 C 104 115 100 118 100 118 C 100 118 96 115 96 112 Z" fill="#1A1A1A"/>
+                            <path d="M 93 121 Q 100 126 100 118 Q 100 126 107 121" stroke="#1A1A1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-1.5 mt-1">
+                        <span class="text-[10px] font-mono-code uppercase font-semibold tracking-widest text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded border border-emerald-200">
+                            AI Vibe Coding · 小程序《说岛》
+                        </span>
+                        <h3 class="font-serif-title text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                            小说分类整理与阅读量化小程序
+                        </h3>
+                        <p class="text-xs text-slate-500 font-light max-w-xs">
+                            独立完成飞书 PRD 规范，并通过 AI 敏捷实现小程序真机功能
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-2 mt-5 pt-4 border-t border-slate-100 w-full text-[10px] font-mono-code text-slate-500">
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#书评打标</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#72万字统计</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#图1同款样机</span>
+                    </div>
+                </div>
+
+                <!-- Folder Card 2: User Ops -->
+                <div onclick="openOpsModal()" class="group cursor-pointer bg-white border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-7 transition-all duration-300 hover:shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-indigo-100 text-indigo-800 group-hover:bg-indigo-600 group-hover:text-white transition-colors px-3 py-1 rounded-full text-[10px] font-mono-code font-semibold">
+                        CLICK TO OPEN ↗
+                    </div>
+
+                    <div class="transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-300 my-3">
+                        <svg viewBox="0 0 200 180" class="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-md group-hover:drop-shadow-xl transition-all">
+                            <path d="M 25 35 C 20 35 15 40 15 45 L 15 150 C 15 160 25 170 35 170 L 165 170 C 175 170 185 160 185 150 L 185 55 C 185 45 175 35 165 35 L 115 35 C 110 35 105 30 100 25 L 95 20 C 90 15 85 15 80 15 L 35 15 C 25 15 25 35 25 35 Z" fill="#EFE8DA"/>
+                            <rect x="15" y="45" width="170" height="125" rx="22" fill="#FAF5EB"/>
+                            <ellipse cx="100" cy="118" rx="20" ry="14" fill="#FFFFFF"/>
+                            <circle cx="70" cy="100" r="8" fill="#1A1A1A"/>
+                            <circle cx="130" cy="100" r="8" fill="#1A1A1A"/>
+                            <path d="M 96 112 C 96 108 104 108 104 112 C 104 115 100 118 100 118 C 100 118 96 115 96 112 Z" fill="#1A1A1A"/>
+                            <path d="M 93 121 Q 100 126 100 118 Q 100 126 107 121" stroke="#1A1A1A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-1.5 mt-1">
+                        <span class="text-[10px] font-mono-code uppercase font-semibold tracking-widest text-indigo-800 bg-indigo-100 px-2.5 py-0.5 rounded border border-indigo-200">
+                            内容获客 · 私域转化
+                        </span>
+                        <h3 class="font-serif-title text-xl font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+                            内容获客与私域转化实践
+                        </h3>
+                        <p class="text-xs text-slate-500 font-light max-w-xs">
+                            小红书引流 ➔ 微信分组沉淀 66 人 ➔ 闲鱼双账号累计交易额约 3.01 万元
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-2 mt-5 pt-4 border-t border-slate-100 w-full text-[10px] font-mono-code text-slate-500">
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#66位分组用户</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#双账号交易额3.01W</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">#复购维护</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 05: Contact & Footer -->
+        <section id="contact" class="max-w-6xl mx-auto mt-24 px-6 reveal-item">
+            <div class="bg-white border border-slate-200 text-slate-900 rounded-3xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400 mb-8">05. 联系方式 & 作品交付 / Contact & Outputs</div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start relative z-10">
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="space-y-3">
+                            <h2 class="font-serif-title text-3xl lg:text-4xl font-medium tracking-tight text-slate-900">
+                                期待与贵公司共同探索产品落地的无限可能
+                            </h2>
+                            <p class="text-xs text-slate-600 font-light leading-relaxed">
+                                无论是产品助理还是产品运营实习/正式岗位，我都随时准备好投入工作。欢迎随时通过下方联系方式与我交流！
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3 pt-1">
+                            <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 text-white font-semibold px-6 py-3 rounded-full text-xs hover:bg-emerald-500 transition-colors flex items-center gap-2 shadow-md shadow-emerald-600/20">
+                                <span>下载 / 查看简历</span>
+                                <span class="text-[10px] font-mono-code">↗</span>
+                            </a>
+                            <button onclick="openMacModal()" class="bg-white border border-slate-300 text-slate-700 px-6 py-3 rounded-full text-xs font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 shadow-2xs">
+                                <span>查看《说岛》小程序真机 MVP</span>
+                                <span class="text-[10px] font-mono-code">↗</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-slate-50/80 border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4">
+                        <div class="text-[10px] font-mono-code text-slate-500 uppercase tracking-widest pb-3 border-b border-slate-200/80 flex justify-between items-center">
+                            <span>Direct Communication</span>
+                            <span class="text-emerald-600 font-medium">[ 点击卡片即可复制 ]</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="copyToClipboard('3180493874@qq.com', '复制成功，请联系我吧！')" class="group text-left p-4 rounded-xl bg-white hover:bg-emerald-600 hover:text-white transition-all duration-300 border border-slate-200 flex flex-col justify-between min-h-[96px] shadow-2xs">
+                                <div>
+                                    <div class="text-[10px] font-mono-code text-slate-400 group-hover:text-emerald-100 transition-colors uppercase tracking-wider mb-1">Email</div>
+                                    <div class="text-xs font-semibold text-slate-900 group-hover:text-white transition-colors truncate">3180493874@qq.com</div>
+                                </div>
+                                <div class="text-[10px] text-slate-400 group-hover:text-white transition-colors mt-3 flex items-center justify-between font-mono-code">
+                                    <span>[邮箱]</span>
+                                    <span class="transform group-hover:translate-x-0.5 transition-transform">复制 ↗</span>
+                                </div>
+                            </button>
+
+                            <button onclick="copyToClipboard('15577218815', '复制成功，请联系我吧！')" class="group text-left p-4 rounded-xl bg-white hover:bg-emerald-600 hover:text-white transition-all duration-300 border border-slate-200 flex flex-col justify-between min-h-[96px] shadow-2xs">
+                                <div>
+                                    <div class="text-[10px] font-mono-code text-slate-400 group-hover:text-emerald-100 transition-colors uppercase tracking-wider mb-1">Phone</div>
+                                    <div class="text-xs font-semibold text-slate-900 group-hover:text-white transition-colors truncate">155 7721 8815</div>
+                                </div>
+                                <div class="text-[10px] text-slate-400 group-hover:text-white transition-colors mt-3 flex items-center justify-between font-mono-code">
+                                    <span>[电话]</span>
+                                    <span class="transform group-hover:translate-x-0.5 transition-transform">复制 ↗</span>
+                                </div>
+                            </button>
+
+                            <button onclick="copyToClipboard('lyq18815', '复制成功，请联系我吧！')" class="group text-left p-4 rounded-xl bg-white hover:bg-emerald-600 hover:text-white transition-all duration-300 border border-slate-200 flex flex-col justify-between min-h-[96px] shadow-2xs">
+                                <div>
+                                    <div class="text-[10px] font-mono-code text-slate-400 group-hover:text-emerald-100 transition-colors uppercase tracking-wider mb-1">WeChat</div>
+                                    <div class="text-xs font-semibold text-slate-900 group-hover:text-white transition-colors truncate">lyq18815</div>
+                                </div>
+                                <div class="text-[10px] text-slate-400 group-hover:text-white transition-colors mt-3 flex items-center justify-between font-mono-code">
+                                    <span>[微信]</span>
+                                    <span class="transform group-hover:translate-x-0.5 transition-transform">复制 ↗</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-500 font-mono-code gap-4">
+                    <p>© 2026 廖艺淇 · 曲阜师范大学. All rights reserved.</p>
+                    <p>Product & Operations Candidate Portfolio</p>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL: Image-1 Style Vector Outline Phone Frame & Actual Screenshot Replica -->
+    <div id="mac-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 transition-opacity duration-300 opacity-0">
+        <div class="bg-white border border-slate-300 rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[90vh] transform scale-95 transition-transform duration-300">
+            
+            <!-- Window Header -->
+            <div class="bg-slate-100 border-b border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <button onclick="closeMacModal()" class="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center text-[9px] text-red-950 opacity-80 hover:opacity-100">✕</button>
+                    <div class="w-3.5 h-3.5 rounded-full bg-yellow-500"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-[11px] font-mono-code text-slate-600 hidden sm:inline">《说岛》小程序 — AI Vibe Coding MVP 真机试用</span>
+                </div>
+                
+                <!-- Navigation Tabs -->
+                <div class="flex bg-slate-200/90 p-0.5 rounded-lg text-[11px] font-mono-code">
+                    <button id="modal-tab-prd" onclick="switchModalTab('prd')" class="px-3 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all">
+                        📄 飞书 PRD 架构
+                    </button>
+                    <button id="modal-tab-demo" onclick="switchModalTab('demo')" class="px-3 py-1 rounded-md font-semibold bg-white text-slate-900 shadow-2xs transition-all flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        📱 手机样机交互 (图1风格)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 1: PRD Architecture View -->
+            <div id="prd-tab-content" class="p-6 md:p-8 overflow-y-auto space-y-7 font-sans hidden">
+                <div class="space-y-3 border-b border-slate-100 pb-5">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono-code rounded-full font-semibold border border-emerald-200">
+                            ✓ 飞书 PRD 规范文档已完成
+                        </span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-mono-code rounded-full font-medium">
+                            🚀 Vibe Coding MVP 真机完全实现
+                        </span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-serif-title text-slate-900 font-bold">《说岛》小说分类整理与阅读量化小程序</h2>
+                    <p class="text-xs text-slate-500 leading-relaxed font-light">
+                        针对重度网文读者的碎片化整理与量化痛点，设计的一款包含“耽美/题材打标、书评记载、弹窗记录阅读时长、72万字/20h阅读可视化”的微信小程序。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+                    <div class="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-slate-900 font-mono-code text-[11px]">01. 痛点洞察与需求抽象</h4>
+                        <p class="text-slate-600 leading-relaxed font-light">
+                            <strong>目标用户：</strong>日均阅读 2 小时以上的网文重度读者。<br />
+                            <strong>核心痛点：</strong>书评没有归集地、缺少题材/性向精准打标、阅读字数与时间缺乏正向反馈。
+                        </p>
+                    </div>
+
+                    <div class="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h4 class="font-semibold text-slate-900 font-mono-code text-[11px]">02. 飞书 PRD 与 Vibe Coding 实践</h4>
+                        <p class="text-slate-600 leading-relaxed font-light">
+                            • 独立在飞书中撰写完整规范 PRD（包含打卡表单、时长弹窗逻辑与状态机）。<br />
+                            • 使用 Cursor 与 Claude Prompt 辅助编写前端代码，实现真实的小程序交互 MVP。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-between items-center border-t border-slate-100">
+                    <a href="https://ncnfn7n5col9.feishu.cn/docx/CisQdEc9JoR1LOxgt3ocULdXnhh?from=from_copylink" target="_blank" rel="noopener noreferrer" class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-black transition-colors inline-flex items-center gap-1 shadow-md">
+                        查看飞书 PRD 完整文档 ↗
+                    </a>
+                    <button onclick="switchModalTab('demo')" class="bg-emerald-600 text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-emerald-500 transition-colors shadow-md flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                        体验《说岛》手机样机 ↗
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 2: Image-1 Style Vector Outline Phone Mockup Demo Area -->
+            <div id="demo-tab-content" class="p-4 sm:p-6 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 flex flex-col items-center justify-center overflow-y-auto max-h-[78vh] relative">
+                
+                <!-- Screen Switcher Bar Above Phone -->
+                <div class="mb-3 flex flex-wrap justify-center gap-1.5 bg-white/80 backdrop-blur-md p-1.5 rounded-full shadow-sm border border-white/60 text-[10px] font-mono-code z-20">
+                    <button onclick="switchAppView('home')" id="nav-view-home" class="view-btn px-3 py-1 rounded-full bg-slate-900 text-white font-medium transition-all">🏠 分类首页(实拍)</button>
+                    <button onclick="switchAppView('list')" id="nav-view-list" class="view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all">📚 耽美书单</button>
+                    <button onclick="switchAppView('detail')" id="nav-view-detail" class="view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all">📄 详情&弹窗</button>
+                    <button onclick="switchAppView('edit')" id="nav-view-edit" class="view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all">✏️ 编辑小说</button>
+                    <button onclick="switchAppView('stats')" id="nav-view-stats" class="view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all">📊 72万字统计</button>
+                </div>
+
+                <!-- Phone Frame (Image 1 Style: Soft Pastel BG + White Vector Outline Frame + Wide Notch) -->
+                <div class="vector-phone-frame w-[310px] sm:w-[330px] h-[580px] bg-slate-900 rounded-[2.8rem] p-2.5 relative shrink-0 my-1 transition-all duration-300">
+                    
+                    <!-- Classic Wide iPhone Notch (As in Image 1) -->
+                    <div class="absolute top-3 left-1/2 -translate-x-1/2 w-32 h-4 bg-slate-950 rounded-b-xl z-40 flex items-center justify-between px-3">
+                        <div class="w-2.5 h-2.5 rounded-full bg-slate-800"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-indigo-500/80"></div>
+                    </div>
+
+                    <!-- Inner Mobile Screen -->
+                    <div class="bg-[#F6F2E9] w-full h-full rounded-[2.2rem] overflow-hidden flex flex-col relative font-sans text-xs text-stone-800 shadow-inner">
+                        
+                        <!-- Top Mini Program Header & Capsular Actions -->
+                        <div class="pt-6 pb-2 px-4 bg-[#F6F2E9] flex items-center justify-between shrink-0 z-30">
+                            <span id="app-title-nav" class="font-bold text-stone-900 text-[13px] tracking-tight">说岛</span>
+                            <div class="flex items-center gap-1.5 bg-white/70 border border-stone-300/60 rounded-full px-2.5 py-1 text-[10px] font-mono-code text-stone-600 shadow-2xs">
+                                <span>•••</span>
+                                <span class="text-stone-300">|</span>
+                                <span class="w-2.5 h-2.5 rounded-full border border-stone-600 flex items-center justify-center text-[7px]">⦿</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Program Interactive Screens Container -->
+                        <div class="flex-1 overflow-y-auto px-3.5 py-1 space-y-3 scrollbar-none relative" id="app-screen-container">
+                            
+                            <!-- VIEW 0: 分类首页 (Real Screenshot Replica) -->
+                            <div id="screen-view-home" class="app-screen space-y-3">
+                                <!-- Title Header -->
+                                <div class="flex justify-between items-start pt-1">
+                                    <div>
+                                        <h2 class="text-xl font-extrabold text-[#3D2E24] tracking-tight">说岛</h2>
+                                        <p class="text-[10px] text-stone-500 font-normal">你的私人阅读书架</p>
+                                    </div>
+                                    
+                                    <!-- Sort Popover Menu -->
+                                    <div class="relative">
+                                        <button onclick="toggleSortMenu()" class="w-7 h-7 bg-white/80 border border-stone-200 rounded-lg flex items-center justify-center text-stone-600 shadow-2xs text-xs">•••</button>
+                                        <div id="sort-menu" class="hidden absolute right-0 top-8 bg-white border border-stone-200 rounded-xl shadow-lg p-1.5 w-24 text-[10px] z-50 space-y-1">
+                                            <div onclick="showToast('已切换为按时间排序')" class="p-1.5 hover:bg-stone-100 rounded text-stone-700 cursor-pointer font-medium">按时间排序</div>
+                                            <div onclick="showToast('已切换为按数量排序')" class="p-1.5 hover:bg-stone-100 rounded text-stone-700 cursor-pointer font-medium">按数量排序</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Category Card 1: 耽美 (4本) -->
+                                <div onclick="switchAppView('list')" class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs flex items-center gap-3 cursor-pointer hover:border-amber-400 transition-all group">
+                                    <!-- 4-Grid Thumbnails -->
+                                    <div class="w-16 h-16 bg-[#EFEADF] rounded-xl border border-stone-200/60 p-1 grid grid-cols-2 gap-1 shrink-0">
+                                        <div class="bg-[#D9D0C1] rounded"></div>
+                                        <div class="bg-[#E2D8C9] rounded"></div>
+                                        <div class="bg-[#E2D8C9] rounded"></div>
+                                        <div class="bg-[#D9D0C1] rounded"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-[#3D2E24] text-sm group-hover:text-amber-800 transition-colors">耽美</h3>
+                                        <span class="text-[10px] text-stone-400 font-mono-code">4本</span>
+                                    </div>
+                                    <span class="text-stone-300 group-hover:text-amber-600 text-xs">↗</span>
+                                </div>
+
+                                <!-- Category Card 2: 古言/玄幻言情 (2本) -->
+                                <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs flex items-center gap-3 relative group">
+                                    <div class="w-16 h-16 bg-[#EFEADF] rounded-xl border border-stone-200/60 p-1 grid grid-cols-2 gap-1 shrink-0">
+                                        <div class="bg-[#D9D0C1] rounded"></div>
+                                        <div class="bg-[#E2D8C9] rounded"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-[#3D2E24] text-sm">古言/玄幻言情</h3>
+                                        <span class="text-[10px] text-stone-400 font-mono-code">2本</span>
+                                    </div>
+                                    <span class="text-stone-300 text-xs">🗑️</span>
+                                </div>
+
+                                <!-- Category Card 3: 现言 (2本) -->
+                                <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs flex items-center gap-3 relative group">
+                                    <div class="w-16 h-16 bg-[#EFEADF] rounded-xl border border-stone-200/60 p-1 grid grid-cols-2 gap-1 shrink-0">
+                                        <div class="bg-[#D9D0C1] rounded"></div>
+                                        <div class="bg-[#E2D8C9] rounded"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-[#3D2E24] text-sm">现言</h3>
+                                        <span class="text-[10px] text-stone-400 font-mono-code">2本</span>
+                                    </div>
+                                    <span class="text-stone-300 text-xs">🗑️</span>
+                                </div>
+
+                                <!-- Category Card 4: 待看 (1本) -->
+                                <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs flex items-center gap-3 relative group">
+                                    <div class="w-16 h-16 bg-[#EFEADF] rounded-xl border border-stone-200/60 p-1 grid grid-cols-2 gap-1 shrink-0">
+                                        <div class="bg-[#D9D0C1] rounded"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-[#3D2E24] text-sm">待看</h3>
+                                        <span class="text-[10px] text-stone-400 font-mono-code">1本</span>
+                                    </div>
+                                    <span class="text-stone-300 text-xs">🗑️</span>
+                                </div>
+
+                                <!-- Dashed Add Category Card -->
+                                <div onclick="showToast('点击新增分类')" class="p-3.5 border-2 border-dashed border-stone-300/80 rounded-2xl flex flex-col items-center justify-center text-stone-400 hover:text-stone-700 hover:border-stone-400 transition-all cursor-pointer bg-white/40">
+                                    <span class="text-lg font-bold leading-none">+</span>
+                                    <span class="text-[10px] font-medium mt-1">添加分类</span>
+                                </div>
+                            </div>
+
+                            <!-- VIEW 1: 耽美 / 书架统计与小说列表页 (Exact Match to User Screenshot) -->
+                            <div id="screen-view-list" class="app-screen space-y-3 hidden">
+                                <!-- Bookshelf Header with Back Button & Add Button -->
+                                <div class="flex justify-between items-center pt-0.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <button onclick="switchAppView('home')" class="text-stone-500 hover:text-stone-900 font-bold text-xs">←</button>
+                                        <h2 class="text-lg font-extrabold text-[#3D2E24] tracking-tight">耽美书架</h2>
+                                    </div>
+                                    <button onclick="showToast('点击记录新小说')" class="bg-[#3D2E24] text-white px-2.5 py-1 rounded-lg text-[10px] font-medium shadow-xs hover:bg-stone-800 transition-colors">
+                                        + 新增小说
+                                    </button>
+                                </div>
+
+                                <!-- Bookshelf Aggregate Statistics Summary Banner (Matching Picture) -->
+                                <div class="bg-[#FFFDF9] border border-amber-900/15 p-2.5 rounded-2xl flex items-center justify-between text-[10px] shadow-2xs">
+                                    <div class="text-center flex-1 border-r border-stone-200/80">
+                                        <div class="text-stone-400 text-[8px] uppercase font-mono-code">书架藏书</div>
+                                        <div class="font-bold text-[#3D2E24] text-xs">4 本</div>
+                                    </div>
+                                    <div class="text-center flex-1 border-r border-stone-200/80">
+                                        <div class="text-stone-400 text-[8px] uppercase font-mono-code">累计字数</div>
+                                        <div class="font-bold text-amber-800 text-xs">94.1 万字</div>
+                                    </div>
+                                    <div class="text-center flex-1">
+                                        <div class="text-stone-400 text-[8px] uppercase font-mono-code">累计时长</div>
+                                        <div class="font-bold text-[#3D2E24] text-xs">20 小时</div>
+                                    </div>
+                                </div>
+
+                                <!-- Book List Container -->
+                                <div class="space-y-2.5">
+                                    
+                                    <!-- Book Card 1 -->
+                                    <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs space-y-2 relative group hover:border-amber-300 transition-all">
+                                        <div class="flex justify-between items-start">
+                                            <div class="space-y-0.5">
+                                                <div class="flex items-center gap-1.5">
+                                                    <h3 class="font-bold text-[#3D2E24] text-xs">成为师尊道侣的日子</h3>
+                                                    <span class="bg-amber-100 text-amber-900 text-[8px] font-medium px-1.5 py-0.2 rounded font-mono-code">已读完</span>
+                                                </div>
+                                                <p class="text-[9px] text-stone-500">作者：塔塔 | 评分：<span class="text-amber-500">★★★★★</span></p>
+                                            </div>
+                                            <button onclick="toggleDurationModal(true)" class="text-[9px] text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-md font-medium transition-colors">
+                                                ⏱️ 记时长
+                                            </button>
+                                        </div>
+
+                                        <!-- Book Stat Tags -->
+                                        <div class="flex items-center gap-2 text-[9px] font-mono-code text-stone-600 bg-[#F6F2E9] p-1.5 rounded-xl border border-stone-200/60">
+                                            <span>📖 58.5万字</span>
+                                            <span class="text-stone-300">|</span>
+                                            <span>⏳ 12小时</span>
+                                            <span class="text-stone-300">|</span>
+                                            <span>🔄 8次阅读</span>
+                                        </div>
+
+                                        <p class="text-[9px] text-stone-500 font-light line-clamp-2 leading-relaxed">
+                                            “非常好平反文！师尊与徒弟之间的宿命感拉满，文笔极其细腻...”
+                                        </p>
+                                    </div>
+
+                                    <!-- Book Card 2 -->
+                                    <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs space-y-2 relative group hover:border-amber-300 transition-all">
+                                        <div class="flex justify-between items-start">
+                                            <div class="space-y-0.5">
+                                                <div class="flex items-center gap-1.5">
+                                                    <h3 class="font-bold text-[#3D2E24] text-xs">落款不明</h3>
+                                                    <span class="bg-stone-100 text-stone-600 text-[8px] font-medium px-1.5 py-0.2 rounded font-mono-code">未读完</span>
+                                                </div>
+                                                <p class="text-[9px] text-stone-500">作者：沉默君 | 评分：<span class="text-amber-500">★★★★☆</span></p>
+                                            </div>
+                                            <button onclick="toggleDurationModal(true)" class="text-[9px] text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-md font-medium transition-colors">
+                                                ⏱️ 记时长
+                                            </button>
+                                        </div>
+
+                                        <div class="flex items-center gap-2 text-[9px] font-mono-code text-stone-600 bg-[#F6F2E9] p-1.5 rounded-xl border border-stone-200/60">
+                                            <span>📖 12.3万字</span>
+                                            <span class="text-stone-300">|</span>
+                                            <span>⏳ 3小时</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Book Card 3 -->
+                                    <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs space-y-2 relative group hover:border-amber-300 transition-all">
+                                        <div class="flex justify-between items-start">
+                                            <div class="space-y-0.5">
+                                                <div class="flex items-center gap-1.5">
+                                                    <h3 class="font-bold text-[#3D2E24] text-xs">师尊</h3>
+                                                    <span class="bg-stone-100 text-stone-600 text-[8px] font-medium px-1.5 py-0.2 rounded font-mono-code">未读完</span>
+                                                </div>
+                                                <p class="text-[9px] text-stone-500">作者：狐狸 | 评分：<span class="text-amber-500">★★★★☆</span></p>
+                                            </div>
+                                            <button onclick="toggleDurationModal(true)" class="text-[9px] text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-md font-medium transition-colors">
+                                                ⏱️ 记时长
+                                            </button>
+                                        </div>
+
+                                        <div class="flex items-center gap-2 text-[9px] font-mono-code text-stone-600 bg-[#F6F2E9] p-1.5 rounded-xl border border-stone-200/60">
+                                            <span>📖 8.1万字</span>
+                                            <span class="text-stone-300">|</span>
+                                            <span>⏳ 2小时</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Book Card 4 -->
+                                    <div class="bg-[#FFFDF9] p-3 rounded-2xl border border-stone-200/90 shadow-2xs space-y-2 relative group hover:border-amber-300 transition-all">
+                                        <div class="flex justify-between items-start">
+                                            <div class="space-y-0.5">
+                                                <div class="flex items-center gap-1.5">
+                                                    <h3 class="font-bold text-[#3D2E24] text-xs">不要靠近剑修会变得不幸</h3>
+                                                    <span class="bg-amber-100 text-amber-900 text-[8px] font-medium px-1.5 py-0.2 rounded font-mono-code">已读完</span>
+                                                </div>
+                                                <p class="text-[9px] text-stone-500">作者：南歌玉转 | 评分：<span class="text-amber-500">★★★★★</span></p>
+                                            </div>
+                                            <button onclick="toggleDurationModal(true)" class="text-[9px] text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-2 py-0.5 rounded-md font-medium transition-colors">
+                                                ⏱️ 记时长
+                                            </button>
+                                        </div>
+
+                                        <div class="flex items-center gap-2 text-[9px] font-mono-code text-stone-600 bg-[#F6F2E9] p-1.5 rounded-xl border border-stone-200/60">
+                                            <span>📖 15.2万字</span>
+                                            <span class="text-stone-300">|</span>
+                                            <span>⏳ 3小时</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Floating Duration Recording Modal Popup (Overlay when active) -->
+                                <div id="duration-modal-popup" class="hidden absolute inset-0 bg-stone-900/40 backdrop-blur-2xs -mx-3.5 -my-1 p-3.5 rounded-2xl flex items-center justify-center z-50">
+                                    <div class="bg-white rounded-2xl p-4 shadow-2xl border border-stone-200 space-y-3 w-full animate-in fade-in zoom-in-95 duration-200">
+                                        <h4 class="font-bold text-stone-900 text-xs text-center border-b border-stone-100 pb-2">记录阅读时长</h4>
+                                        <div class="space-y-2 text-[10px]">
+                                            <div>
+                                                <span class="text-stone-500 block mb-1">开始时间</span>
+                                                <div class="flex gap-2">
+                                                    <span class="flex-1 bg-stone-100 border border-stone-200 p-1.5 rounded-lg font-mono-code text-center text-stone-800">2026-08-01</span>
+                                                    <span class="w-16 bg-stone-100 border border-stone-200 p-1.5 rounded-lg font-mono-code text-center text-stone-800">01:11</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="text-stone-500 block mb-1">结束时间</span>
+                                                <div class="flex gap-2">
+                                                    <span class="flex-1 bg-stone-100 border border-stone-200 p-1.5 rounded-lg font-mono-code text-center text-stone-800">2026-08-01</span>
+                                                    <span class="w-16 bg-stone-100 border border-stone-200 p-1.5 rounded-lg font-mono-code text-center text-stone-800">02:11</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex gap-2 pt-1">
+                                            <button onclick="toggleDurationModal(false)" class="flex-1 bg-stone-200 text-stone-700 py-2 rounded-xl text-[10px] font-semibold hover:bg-stone-300 transition-colors">取消</button>
+                                            <button onclick="saveDurationRecord()" class="flex-1 bg-amber-800 text-white py-2 rounded-xl text-[10px] font-semibold shadow-xs hover:bg-amber-900 transition-colors">保存记录</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- VIEW 3: 编辑小说表单页 (Screenshot 5 Replica) -->
+                            <div id="screen-view-edit" class="app-screen space-y-3 hidden">
+                                <div class="bg-white p-3.5 rounded-xl border border-stone-200 space-y-2.5 text-[10px]">
+                                    <div class="font-bold text-stone-900 border-b border-stone-100 pb-1.5 text-xs">← 编辑小说</div>
+                                    
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">小说名称</label>
+                                        <input type="text" value="不要靠近剑修会变得不幸" class="w-full bg-stone-50 border border-stone-200 rounded-lg p-2 font-medium text-stone-900" readonly />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">作者</label>
+                                        <input type="text" value="南歌玉转" class="w-full bg-stone-50 border border-stone-200 rounded-lg p-2 text-stone-900" readonly />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">类型 / 性向标签</label>
+                                        <input type="text" value="如：都市、悬疑、BL" class="w-full bg-stone-50 border border-stone-200 rounded-lg p-2 text-stone-400" readonly />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">评分</label>
+                                        <div class="text-amber-500 text-sm tracking-widest">★★★★☆</div>
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">本书总字数</label>
+                                        <input type="text" value="58.5" class="w-full bg-stone-50 border border-stone-200 rounded-lg p-2 text-stone-900 font-mono-code" readonly />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-1">阅读状态</label>
+                                        <div class="flex rounded-lg overflow-hidden border border-stone-200">
+                                            <div class="flex-1 text-center py-1.5 bg-stone-100 text-stone-600">未读完</div>
+                                            <div class="flex-1 text-center py-1.5 bg-amber-800 text-white font-semibold">已读完</div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="text-stone-500 block mb-0.5">个人书评</label>
+                                        <textarea class="w-full bg-stone-50 border border-stone-200 rounded-lg p-2 text-stone-700 text-[9px] h-16 leading-relaxed" readonly>也是之前看了的，前段时间看这个作者的拯救苍生从拆cp开始，就突然就想起这本了...</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- VIEW 4: 统计 / 72万字核心数据看板 (Screenshot 1 & 6 Replica) -->
+                            <div id="screen-view-stats" class="app-screen space-y-3 hidden">
+                                <div class="bg-white p-3.5 rounded-2xl border border-stone-200 space-y-3">
+                                    <div class="font-bold text-stone-900 text-xs">核心数据一览</div>
+                                    
+                                    <!-- 6 Grid Dashboard Badges (100% Screenshot Match) -->
+                                    <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code">20h</div>
+                                            <div class="text-[8px] text-stone-400">总阅读时间</div>
+                                        </div>
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code">6本</div>
+                                            <div class="text-[8px] text-stone-400">总书籍数</div>
+                                        </div>
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code text-amber-700">72万字</div>
+                                            <div class="text-[8px] text-stone-400">总阅读字数</div>
+                                        </div>
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code">8次</div>
+                                            <div class="text-[8px] text-stone-400">阅读次数</div>
+                                        </div>
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code">2本</div>
+                                            <div class="text-[8px] text-stone-400">已读完数量</div>
+                                        </div>
+                                        <div class="bg-stone-50 p-2 rounded-xl border border-stone-100">
+                                            <div class="text-base font-bold text-stone-900 font-mono-code">5h</div>
+                                            <div class="text-[8px] text-stone-400">日均时长</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Filter tabs: 总 / 月 / 周 -->
+                                    <div class="flex rounded-lg bg-stone-100 p-0.5 text-[9px] text-center font-mono-code">
+                                        <div class="flex-1 bg-amber-800 text-white rounded py-0.5 font-bold">总</div>
+                                        <div class="flex-1 text-stone-600 py-0.5">月</div>
+                                        <div class="flex-1 text-stone-600 py-0.5">周</div>
+                                    </div>
+
+                                    <!-- Chart Section: 最近15天每日阅读时间分布 -->
+                                    <div class="space-y-1 pt-1">
+                                        <div class="text-[10px] font-bold text-stone-800">最近15天 每日阅读时间分布</div>
+                                        <div class="h-20 bg-stone-50 rounded-xl border border-stone-100 p-2 flex items-end justify-between gap-1">
+                                            <div class="w-2 bg-stone-300 h-[20%] rounded-t"></div>
+                                            <div class="w-2 bg-stone-300 h-[35%] rounded-t"></div>
+                                            <div class="w-2 bg-amber-800 h-[85%] rounded-t"></div>
+                                            <div class="w-2 bg-stone-300 h-[10%] rounded-t"></div>
+                                            <div class="w-2 bg-stone-300 h-[15%] rounded-t"></div>
+                                            <div class="w-2 bg-amber-800 h-[60%] rounded-t"></div>
+                                            <div class="w-2 bg-stone-300 h-[25%] rounded-t"></div>
+                                            <div class="w-2 bg-amber-800 h-[95%] rounded-t"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Leaderboard: 阅读时间最长的文件 -->
+                                    <div class="space-y-1.5 pt-1">
+                                        <div class="text-[10px] font-bold text-stone-800">阅读时间最长的文件 (Top 10)</div>
+                                        <div class="space-y-1 text-[9px]">
+                                            <div class="flex justify-between p-1.5 bg-stone-50 rounded-lg">
+                                                <span class="font-medium text-amber-900"><strong class="text-amber-600 font-mono-code">01</strong> 成为师尊道侣的日子</span>
+                                                <span class="text-stone-500 font-mono-code">12小时</span>
+                                            </div>
+                                            <div class="flex justify-between p-1.5 bg-stone-50 rounded-lg">
+                                                <span class="font-medium text-stone-800"><strong class="text-stone-400 font-mono-code">02</strong> 落款不明</span>
+                                                <span class="text-stone-500 font-mono-code">3小时</span>
+                                            </div>
+                                            <div class="flex justify-between p-1.5 bg-stone-50 rounded-lg">
+                                                <span class="font-medium text-stone-800"><strong class="text-stone-400 font-mono-code">03</strong> 师尊</span>
+                                                <span class="text-stone-500 font-mono-code">2小时</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- VIEW 5: 我的 (Profile Tab) -->
+                            <div id="screen-view-mine" class="app-screen space-y-3 hidden">
+                                <div class="bg-white p-4 rounded-2xl border border-stone-200 text-center space-y-2">
+                                    <div class="w-12 h-12 bg-amber-200/80 text-amber-900 rounded-full mx-auto flex items-center justify-center font-bold text-base">岛</div>
+                                    <h3 class="font-bold text-[#3D2E24] text-xs">说岛 · 私人读者</h3>
+                                    <p class="text-[9px] text-stone-400 font-mono-code">已打卡 32 天 | 习惯积累中</p>
+                                </div>
+                                <div class="bg-white rounded-2xl border border-stone-200 p-2 text-[10px] space-y-1">
+                                    <div class="p-2 hover:bg-stone-50 rounded flex justify-between text-stone-700"><span>📚 导出数据备份</span><span>›</span></div>
+                                    <div class="p-2 hover:bg-stone-50 rounded flex justify-between text-stone-700"><span>🎨 界面暖调主题设置</span><span>已开启</span></div>
+                                    <div class="p-2 hover:bg-stone-50 rounded flex justify-between text-stone-700"><span>📄 飞书 PRD 需求对应</span><span>v1.2</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Bottom Navigation with 4 Tabs (Exact match to real screenshot) -->
+                        <div class="bg-[#EFEADF] border-t border-stone-300/50 px-2 py-1.5 flex justify-around items-center text-[10px] text-stone-600 shrink-0">
+                            <button id="tab-btn-home" onclick="switchAppView('home')" class="px-3 py-1 rounded-full bg-[#E3D9C8] font-bold text-[#3D2E24] transition-all">
+                                分类
+                            </button>
+                            <button id="tab-btn-list" onclick="switchAppView('list')" class="px-3 py-1 text-stone-600 hover:text-stone-900 transition-all">
+                                书架
+                            </button>
+                            <button id="tab-btn-stats" onclick="switchAppView('stats')" class="px-3 py-1 text-stone-600 hover:text-stone-900 transition-all">
+                                统计
+                            </button>
+                            <button id="tab-btn-mine" onclick="switchAppView('mine')" class="px-3 py-1 text-stone-600 hover:text-stone-900 transition-all">
+                                我的
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p class="text-[10px] font-mono-code text-purple-900/80 mt-2 bg-white/60 px-3 py-1 rounded-full border border-white/80">
+                    💡 提示：已完全匹配实拍照 UI！点击底部 4 个 Tab【分类 | 书架 | 统计 | 我的】或点击“耽美”卡片体验跳转
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL: Skygrove Sentinels Game Product Case Study -->
+    <div id="game-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/75 p-3 backdrop-blur-md transition-opacity duration-300 opacity-0 sm:p-6">
+        <div class="flex max-h-[92vh] w-full max-w-5xl scale-95 transform flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-2xl transition-transform duration-300">
+            <div class="flex shrink-0 items-center justify-between border-b border-slate-200 bg-slate-100 px-4 py-3">
+                <div class="flex min-w-0 items-center gap-2">
+                    <button onclick="closeGameModal()" class="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-red-500 text-[9px] text-red-950 opacity-80 transition-colors hover:bg-red-600 hover:opacity-100">✕</button>
+                    <div class="h-3.5 w-3.5 shrink-0 rounded-full bg-yellow-500"></div>
+                    <div class="h-3.5 w-3.5 shrink-0 rounded-full bg-green-500"></div>
+                    <span class="ml-2 truncate text-[11px] font-mono-code text-slate-600">Skygrove Sentinels — Game Product Case Study</span>
+                </div>
+                <span class="hidden rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] font-mono-code text-amber-900 sm:inline">PRODUCT / GAME DESIGN</span>
+            </div>
+
+            <div class="overflow-y-auto bg-gradient-to-b from-white to-slate-50 p-5 sm:p-8">
+                <div class="grid grid-cols-1 gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                    <div class="space-y-4">
+                        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 shadow-sm">
+                            <img src="skygrove-cover.jpg" alt="Skygrove Sentinels 游戏封面" class="h-64 w-full object-cover sm:h-80" />
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                                <img src="skygrove-concept.jpg" alt="Skygrove Sentinels 场景概念图" class="h-28 w-full object-cover sm:h-36" />
+                            </div>
+                            <div class="overflow-hidden rounded-xl border border-slate-200 bg-slate-900">
+                                <img src="skygrove-battle.png" alt="Skygrove Sentinels 进入战斗后的地图画面" class="h-28 w-full object-cover sm:h-36" />
+                            </div>
+                        </div>
+                        <button onclick="openGameDemo()" class="w-full rounded-full bg-amber-500 px-5 py-3 text-xs font-semibold text-amber-950 shadow-md transition-colors hover:bg-amber-400">打开在线试玩 ↗</button>
+                    </div>
+
+                    <div class="space-y-7">
+                        <div class="space-y-3 border-b border-slate-200 pb-6">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold text-amber-900">3D 俯视射击</span>
+                                <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold text-emerald-800">随机升级构筑</span>
+                                <span class="rounded-full border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono-code font-semibold text-slate-700">Three.js</span>
+                            </div>
+                            <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Skygrove Sentinels</h2>
+                            <p class="text-sm leading-relaxed text-slate-600">一个围绕“战斗 - 掉落 - 成长 - 清关”的轻量化游戏产品原型，用可试玩的方式验证战斗循环、成长反馈和关卡推进。</p>
+                        </div>
+
+                        <div>
+                            <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">01. Core Loop</div>
+                            <h3 class="mt-1 text-lg font-semibold text-slate-900">核心玩法循环</h3>
+                            <div class="mt-4 grid grid-cols-2 gap-3 text-xs sm:grid-cols-5">
+                                <div class="rounded-xl border border-slate-200 bg-white p-3"><b class="text-amber-700">01</b><div class="mt-2 font-semibold text-slate-800">移动射击</div></div>
+                                <div class="rounded-xl border border-slate-200 bg-white p-3"><b class="text-amber-700">02</b><div class="mt-2 font-semibold text-slate-800">击杀掉落</div></div>
+                                <div class="rounded-xl border border-slate-200 bg-white p-3"><b class="text-amber-700">03</b><div class="mt-2 font-semibold text-slate-800">拾取成长</div></div>
+                                <div class="rounded-xl border border-slate-200 bg-white p-3"><b class="text-amber-700">04</b><div class="mt-2 font-semibold text-slate-800">随机升级</div></div>
+                                <div class="rounded-xl border border-slate-200 bg-white p-3"><b class="text-amber-700">05</b><div class="mt-2 font-semibold text-slate-800">清关推进</div></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">02. Project Overview</div>
+                                <h3 class="mt-1 text-lg font-semibold text-slate-900">项目简介</h3>
+                                <ul class="mt-3 space-y-2 text-xs leading-relaxed text-slate-600">
+                                    <li>• 项目类型：3D 俯视射击生存闯关</li>
+                                    <li>• 核心循环：战斗 → 掉落 → 成长 → 清关</li>
+                                    <li>• 目标：验证战斗反馈、成长构筑与关卡推进体验</li>
+                                    <li>• 形态：基于 Three.js 的可在线试玩网页原型</li>
+                                </ul>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">03. Project Results</div>
+                                <h3 class="mt-1 text-lg font-semibold text-slate-900">项目业绩</h3>
+                                <ul class="mt-3 space-y-2 text-xs leading-relaxed text-slate-600">
+                                    <li>• 完成主菜单、战斗、升级、Boss、清关与下一关入口的完整流程</li>
+                                    <li>• 实现玩家、普通敌人、精英敌人、掉落吸附与随机三选一升级</li>
+                                    <li>• 根据试玩反馈迭代 Boss 难度、通关提示和场景实体碰撞</li>
+                                    <li>• 完成 GitHub Pages 部署，支持面试官直接在线体验</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                            <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">04. Iteration Log</div>
+                            <h3 class="mt-1 text-lg font-semibold text-slate-900">关键问题与迭代</h3>
+                            <div class="mt-4 space-y-3 text-xs">
+                                <div class="grid grid-cols-[0.8fr_1.2fr] gap-3 border-b border-slate-100 pb-3"><b class="text-slate-800">Boss 太难</b><span class="text-slate-600">降低 Boss 血量与攻击，Boss 出现时暂停普通小怪刷新。</span></div>
+                                <div class="grid grid-cols-[0.8fr_1.2fr] gap-3 border-b border-slate-100 pb-3"><b class="text-slate-800">清关不清楚</b><span class="text-slate-600">增加“已通关”奖励提示，并说明光圈是下一关入口。</span></div>
+                                <div class="grid grid-cols-[0.8fr_1.2fr] gap-3 border-b border-slate-100 pb-3"><b class="text-slate-800">场景穿模</b><span class="text-slate-600">为房屋、木箱等场景物体增加实体碰撞，改善移动反馈。</span></div>
+                                <div class="grid grid-cols-[0.8fr_1.2fr] gap-3"><b class="text-slate-800">部署丢图</b><span class="text-slate-600">压缩图片、减少重复资源，整理 GitHub Pages 轻量上传包。</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex items-center justify-between border-t border-slate-200 pt-5">
+                    <div class="text-[11px] text-slate-500">技术栈：Three.js / JavaScript / HTML / CSS / GitHub Pages</div>
+                    <button onclick="closeGameModal()" class="rounded-full bg-slate-900 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-black">关闭 Case Study ↗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Content Acquisition & Private Traffic Conversion Case Study -->
+    <div id="ops-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 transition-opacity duration-300 opacity-0">
+        <div class="bg-white border border-slate-300 rounded-2xl shadow-2xl w-full max-w-5xl overflow-hidden flex flex-col max-h-[90vh] transform scale-95 transition-transform duration-300">
+            <div class="bg-slate-100 border-b border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <button onclick="closeOpsModal()" class="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center text-[9px] text-red-950 opacity-80 hover:opacity-100">✕</button>
+                    <div class="w-3.5 h-3.5 rounded-full bg-yellow-500"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-[11px] font-mono-code text-slate-600 hidden sm:inline">内容获客与私域转化实践 — 证据链 Case Study</span>
+                </div>
+                <span class="text-[10px] font-mono-code text-slate-500 bg-white border border-slate-200 px-2.5 py-1 rounded-full">小红书 / 微信 / 闲鱼</span>
+            </div>
+
+            <div class="p-6 md:p-8 overflow-y-auto space-y-8 font-sans bg-[linear-gradient(180deg,#ffffff_0%,#fafaf9_100%)]">
+                <div class="space-y-4 border-b border-slate-100 pb-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-0.5 bg-indigo-100 text-indigo-800 text-[10px] font-mono-code rounded-full font-semibold border border-indigo-200">✓ 内容获客</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-mono-code rounded-full font-medium">✓ 私域沉淀</span>
+                        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-mono-code rounded-full font-medium">✓ 交易转化</span>
+                        <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono-code rounded-full font-medium">✓ 复购维护</span>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.9fr] gap-6 items-start">
+                        <div class="space-y-3">
+                            <h2 class="text-2xl md:text-3xl font-serif-title text-slate-900 font-bold">内容获客与私域转化实践</h2>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">
+                                以小红书为主渠道发布兴趣服务与二手交易内容，在 2025年12月 到 2026年4月 的集中运营阶段，完成了“公开内容曝光 → 微信私域承接 → 闲鱼交易补充 → 回头客维护”的轻运营闭环。2026年5月后减少公开发帖频率，逐步转向以复购用户和长期需求用户为主。
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">WeChat</div>
+                                <div class="mt-2 text-2xl font-semibold text-slate-900">66</div>
+                                <div class="mt-1 text-slate-500">固定分组沉淀用户</div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Xianyu</div>
+                                <div class="mt-2 text-2xl font-semibold text-slate-900">3.01W</div>
+                                <div class="mt-1 text-slate-500">双账号累计交易额</div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Repeat</div>
+                                <div class="mt-2 text-2xl font-semibold text-slate-900">10+</div>
+                                <div class="mt-1 text-slate-500">发生过复购的用户</div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Long-term</div>
+                                <div class="mt-2 text-2xl font-semibold text-slate-900">2</div>
+                                <div class="mt-1 text-slate-500">仍在合作中的回头客</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-2">
+                        <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Channel Role</div>
+                        <h4 class="font-semibold text-slate-900">平台分工</h4>
+                        <p class="text-slate-600 leading-relaxed font-light">小红书负责内容触达与引流，微信负责信任建立、报价沟通与复购维护，闲鱼主要承接二手商品交易和部分需求转化，微博作为少量补充曝光渠道。</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-2">
+                        <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">My Actions</div>
+                        <h4 class="font-semibold text-slate-900">我做了什么</h4>
+                        <p class="text-slate-600 leading-relaxed font-light">持续发布引流内容，自己用 Canvas 制作价格表和服务说明图，利用信誉图和更低决策门槛建立信任，并对已成交用户进行后续维护。</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-2">
+                        <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">What It Proves</div>
+                        <h4 class="font-semibold text-slate-900">能力证明</h4>
+                        <p class="text-slate-600 leading-relaxed font-light">这段经历能证明我具备内容获客意识、转化素材表达能力、私域沉淀思维，以及从首单到复购的用户留存意识。</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                    <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Funnel</div>
+                    <div class="mt-3 grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-white border border-slate-200 rounded-xl p-4">
+                            <div class="font-semibold text-slate-900">01. 内容触达</div>
+                            <p class="mt-2 text-slate-500 font-light leading-relaxed">在小红书发布接单内容、价格图和服务说明，维持稳定曝光。</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4">
+                            <div class="font-semibold text-slate-900">02. 私域承接</div>
+                            <p class="mt-2 text-slate-500 font-light leading-relaxed">将高意向用户引导到微信，集中进行需求确认、解释和信任建立。</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4">
+                            <div class="font-semibold text-slate-900">03. 成交转化</div>
+                            <p class="mt-2 text-slate-500 font-light leading-relaxed">通过价格表、信誉证明和更低决策门槛，提高首次成交概率。</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4">
+                            <div class="font-semibold text-slate-900">04. 复购维护</div>
+                            <p class="mt-2 text-slate-500 font-light leading-relaxed">对已成交用户持续维护，逐步形成回头客与长期需求用户。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence</div>
+                            <h3 class="text-lg font-semibold text-slate-900">精简证据区</h3>
+                        </div>
+                        <p class="text-[11px] text-slate-500 font-light">只保留最关键的 5 组材料，不做截图附录墙。</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                            <button onclick="openImageLightbox('codex-clipboard-62d998a7-6ca7-4325-a9be-f05e7f55da11.jpg', '小红书内容发布截图')" class="group relative block w-full text-left">
+                                <img src="codex-clipboard-62d998a7-6ca7-4325-a9be-f05e7f55da11.jpg" alt="小红书内容发布截图" class="w-full h-72 object-cover object-top bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">点击查看原图 ↗</span>
+                            </button>
+                            <div class="p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence 01</div>
+                                <h4 class="mt-1 font-semibold text-slate-900">内容发布与引流入口</h4>
+                                <p class="mt-2 text-xs text-slate-500 leading-relaxed font-light">小红书作为主获客渠道，承担内容曝光、需求触达和第一轮兴趣筛选的作用。</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                            <button onclick="openImageLightbox('codex-clipboard-4b5729f6-1447-4820-8f2a-54238a1e1e89.jpg', '价格表截图')" class="group relative block w-full text-left">
+                                <img src="codex-clipboard-4b5729f6-1447-4820-8f2a-54238a1e1e89.jpg" alt="价格表截图" class="w-full h-72 object-cover object-top bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">点击查看原图 ↗</span>
+                            </button>
+                            <div class="p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence 02</div>
+                                <h4 class="mt-1 font-semibold text-slate-900">Canvas 自制价格表</h4>
+                                <p class="mt-2 text-xs text-slate-500 leading-relaxed font-light">自己制作价格与服务说明图，降低用户理解成本，也提升了咨询效率和信任感。</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                            <button onclick="openImageLightbox('codex-clipboard-2586fc35-4d0e-4d6b-a255-62975c1a3853.jpg', '微信分组截图')" class="group relative block w-full text-left">
+                                <img src="codex-clipboard-2586fc35-4d0e-4d6b-a255-62975c1a3853.jpg" alt="微信分组截图" class="w-full h-72 object-cover object-top bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">点击查看原图 ↗</span>
+                            </button>
+                            <div class="p-4">
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence 03</div>
+                                <h4 class="mt-1 font-semibold text-slate-900">微信私域沉淀</h4>
+                                <p class="mt-2 text-xs text-slate-500 leading-relaxed font-light">固定分组里沉淀了 66 位已成交或高意向用户，说明这不是零散接单，而是持续性的用户积累。</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden p-4 space-y-4">
+                            <div>
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence 04</div>
+                                <h4 class="mt-1 font-semibold text-slate-900">闲鱼双账号交易额</h4>
+                                <p class="mt-2 text-xs text-slate-500 leading-relaxed font-light">两个账号分别用于区分不同商品线与使用场景，累计交易额约 30,107.09 元，也支持部分二手转化与库存流转。</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="openImageLightbox('codex-clipboard-867c051f-d7d6-4397-882a-9d40410f4616.jpg', '闲鱼账号一交易额')" class="group relative block text-left">
+                                    <img src="codex-clipboard-867c051f-d7d6-4397-882a-9d40410f4616.jpg" alt="闲鱼账号一交易额" class="w-full h-72 object-cover object-top rounded-xl border border-slate-200 bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                    <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">原图 ↗</span>
+                                </button>
+                                <button onclick="openImageLightbox('codex-clipboard-7124ae6c-dc67-4e94-99e1-f66f07c052ad.jpg', '闲鱼账号二交易额')" class="group relative block text-left">
+                                    <img src="codex-clipboard-7124ae6c-dc67-4e94-99e1-f66f07c052ad.jpg" alt="闲鱼账号二交易额" class="w-full h-72 object-cover object-top rounded-xl border border-slate-200 bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                    <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">原图 ↗</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden p-4 space-y-4 lg:col-span-2">
+                            <div>
+                                <div class="text-[10px] font-mono-code uppercase tracking-widest text-slate-400">Evidence 05</div>
+                                <h4 class="mt-1 font-semibold text-slate-900">收款记录与持续成交</h4>
+                                <p class="mt-2 text-xs text-slate-500 leading-relaxed font-light">收款记录覆盖 2026年3月31日 到 2026年4月18日，能证明存在持续发生的成交，而不是个别偶发订单。</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <button onclick="openImageLightbox('codex-clipboard-f22e8863-e2fd-48c0-a240-f0060d4c9c79.jpg', '收款记录截图一')" class="group relative block text-left">
+                                    <img src="codex-clipboard-f22e8863-e2fd-48c0-a240-f0060d4c9c79.jpg" alt="收款记录截图一" class="w-full h-72 object-cover object-top rounded-xl border border-slate-200 bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                    <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">原图 ↗</span>
+                                </button>
+                                <div class="grid grid-rows-2 gap-3">
+                                    <button onclick="openImageLightbox('codex-clipboard-fef10989-e747-4c92-bda0-2c073c7fe2f6.jpg', '收款记录截图二')" class="group relative block text-left">
+                                        <img src="codex-clipboard-fef10989-e747-4c92-bda0-2c073c7fe2f6.jpg" alt="收款记录截图二" class="w-full h-[10.7rem] object-cover object-top rounded-xl border border-slate-200 bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                        <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">原图 ↗</span>
+                                    </button>
+                                    <button onclick="openImageLightbox('codex-clipboard-8eda0100-5e98-4a51-9b32-31bee82f8d31.jpg', '收款记录截图三')" class="group relative block text-left">
+                                        <img src="codex-clipboard-8eda0100-5e98-4a51-9b32-31bee82f8d31.jpg" alt="收款记录截图三" class="w-full h-[10.7rem] object-cover object-top rounded-xl border border-slate-200 bg-slate-50 transition-transform duration-300 group-hover:scale-[1.02]" />
+                                        <span class="absolute right-3 top-3 bg-white/85 backdrop-blur-sm border border-white text-slate-700 px-3 py-1 rounded-full text-[10px] font-mono-code shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">原图 ↗</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-between items-center border-t border-slate-100">
+                    <div class="text-[11px] text-slate-500 font-light">展示重点放在“获客、沉淀、转化、复购”四个环节，而不是堆积原始聊天记录。</div>
+                    <button onclick="closeOpsModal()" class="bg-slate-900 text-white px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-black transition-colors inline-flex items-center gap-1 shadow-md">
+                        关闭 Case Study ↗
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox: View Original Evidence Image -->
+    <div id="image-lightbox" class="fixed inset-0 z-[60] bg-slate-950/86 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 transition-opacity duration-300 opacity-0">
+        <div class="relative w-full max-w-6xl max-h-[92vh] flex flex-col">
+            <div class="flex items-center justify-between mb-3 text-white/90">
+                <div class="text-[11px] font-mono-code tracking-widest uppercase">
+                    <span id="lightbox-title">Evidence Preview</span>
+                </div>
+                <button onclick="closeImageLightbox()" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-3 py-1.5 rounded-full text-[11px] font-mono-code transition-colors">关闭 ✕</button>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+                <img id="lightbox-image" src="" alt="" class="w-full max-h-[82vh] object-contain bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_50%),#0f172a]" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast-message" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white border border-slate-700 text-xs px-5 py-2.5 rounded-full shadow-2xl font-mono-code hidden transition-all duration-300 transform translate-y-3 opacity-0 z-50 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="toast-text">复制成功，请联系我吧！</span>
+    </div>
+
+    <script>
+        function toggleDurationModal(show) {
+            const popup = document.getElementById('duration-modal-popup');
+            if (popup) {
+                if (show) {
+                    popup.classList.remove('hidden');
+                } else {
+                    popup.classList.add('hidden');
+                }
+            }
+        }
+
+        function saveDurationRecord() {
+            toggleDurationModal(false);
+            showToast('已成功记录 1 小时阅读时长！');
+        }
+
+        function switchModalTab(tab) {
+            const prdContent = document.getElementById('prd-tab-content');
+            const demoContent = document.getElementById('demo-tab-content');
+            const prdBtn = document.getElementById('modal-tab-prd');
+            const demoBtn = document.getElementById('modal-tab-demo');
+
+            if (tab === 'prd') {
+                prdContent.classList.remove('hidden');
+                demoContent.classList.add('hidden');
+                demoContent.classList.remove('flex');
+
+                prdBtn.className = "px-3 py-1 rounded-md font-semibold bg-white text-slate-900 shadow-2xs transition-all";
+                demoBtn.className = "px-3 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1";
+            } else {
+                prdContent.classList.add('hidden');
+                demoContent.classList.remove('hidden');
+                demoContent.classList.add('flex');
+
+                demoBtn.className = "px-3 py-1 rounded-md font-semibold bg-white text-slate-900 shadow-2xs transition-all flex items-center gap-1";
+                prdBtn.className = "px-3 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all";
+            }
+        }
+
+        function toggleSortMenu() {
+            const menu = document.getElementById('sort-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function switchAppView(viewKey) {
+            document.querySelectorAll('.app-screen').forEach(scr => scr.classList.add('hidden'));
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.className = "view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all";
+            });
+
+            // Reset bottom tabs style inside mockup
+            const tabs = ['home', 'list', 'stats', 'mine'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                if (btn) btn.className = "px-3 py-1 text-stone-600 hover:text-stone-900 transition-all";
+            });
+
+            const activeView = document.getElementById(`screen-view-${viewKey}`);
+            const activeNavBtn = document.getElementById(`nav-view-${viewKey}`);
+            const activeTabBtn = document.getElementById(`tab-btn-${viewKey}`);
+            const titleNav = document.getElementById('app-title-nav');
+
+            if (activeView) activeView.classList.remove('hidden');
+            if (activeNavBtn) activeNavBtn.className = "view-btn px-3 py-1 rounded-full bg-slate-900 text-white font-medium transition-all";
+            if (activeTabBtn) activeTabBtn.className = "px-3 py-1 rounded-full bg-[#E3D9C8] font-bold text-[#3D2E24] transition-all";
+
+            if (viewKey === 'home') titleNav.innerText = "说岛";
+            else if (viewKey === 'list') titleNav.innerText = "耽美";
+            else if (viewKey === 'detail') titleNav.innerText = "详情";
+            else if (viewKey === 'edit') titleNav.innerText = "编辑小说";
+            else if (viewKey === 'stats') titleNav.innerText = "统计看板";
+            else if (viewKey === 'mine') titleNav.innerText = "我的";
+
+            // Hide sort popover if open
+            const menu = document.getElementById('sort-menu');
+            if (menu) menu.classList.add('hidden');
+        }
+
+        function switchAppView(viewKey) {
+            document.querySelectorAll('.app-screen').forEach(scr => scr.classList.add('hidden'));
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.className = "view-btn px-3 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 transition-all";
+            });
+
+            const activeView = document.getElementById(`screen-view-${viewKey}`);
+            const activeBtn = document.getElementById(`nav-view-${viewKey}`);
+            const titleNav = document.getElementById('app-title-nav');
+
+            if (activeView) activeView.classList.remove('hidden');
+            if (activeBtn) activeBtn.className = "view-btn px-3 py-1 rounded-full bg-slate-900 text-white font-medium transition-all";
+
+            if (viewKey === 'list') titleNav.innerText = "耽美";
+            else if (viewKey === 'detail') titleNav.innerText = "详情";
+            else if (viewKey === 'edit') titleNav.innerText = "编辑小说";
+            else if (viewKey === 'stats') titleNav.innerText = "统计看板";
+        }
+
+        const skillsData = {
+            insight: {
+                badge: "[AI VIBE CODING]",
+                title: "AI Vibe Coding 敏捷落地",
+                desc: "在独立完成《说岛》小程序需求梳理后，运用 Cursor 与 AI 协作工具快速搭建前端 MVP，把想法尽量落到可演示、可验证的页面里。",
+                highlights: ["✓ 需求转化为页面逻辑", "✓ 《说岛》MVP 独立开发", "✓ AI 协同迭代"],
+                index: "01 / 07"
+            },
+            prd: {
+                badge: "[PRODUCT DESIGN]",
+                title: "需求结构化表达",
+                desc: "可以用飞书文档把需求背景、页面流程、状态流转和边界情况写清楚，让功能方案更容易被理解、讨论和继续推进。",
+                highlights: ["✓ 页面流程梳理", "✓ 状态与边界描述", "✓ 需求表达清晰"],
+                index: "02 / 07"
+            },
+            content: {
+                badge: "[CONTENT & AUDIENCE]",
+                title: "内容运营与偏好洞察",
+                desc: "具备小说平台内容运营实习经验，工作以内容审核为主；结合 10+ 年网文阅读经历，能够从标题、简介、标签、正文质量和真实阅读体验理解内容偏好与用户反馈。",
+                highlights: ["✓ 内容质量审核", "✓ 10+ 年网文阅读", "✓ 题材偏好洞察"],
+                index: "03 / 07"
+            },
+            ecommerce: {
+                badge: "[E-COMMERCE & GMV]",
+                title: "双账号交易运营与商品表达",
+                desc: "独立运营闲鱼双账号，围绕不同商品线与交易场景做区分管理，累计交易额约 3.01W 元，并形成持续的选品、上架、沟通与售后闭环。",
+                highlights: ["✓ 双账号累计 3.01W", "✓ 商品线区分运营", "✓ 沟通与售后闭环"],
+                index: "04 / 07"
+            },
+            ops: {
+                badge: "[PRIVATE TRAFFIC]",
+                title: "内容获客与私域复购沉淀",
+                desc: "以小红书为主渠道进行内容获客，将高意向用户沉淀到微信分组中承接成交与复购维护，累计触达 70+ 付费用户并沉淀 66 位固定分组用户。",
+                highlights: ["✓ 小红书➔微信路径", "✓ 70+ 付费用户", "✓ 复购与长期维护"],
+                index: "05 / 07"
+            },
+            ux: {
+                badge: "[CROSS-FIELD LOGIC]",
+                title: "跨界逻辑抽象",
+                desc: "土地资源管理专业背景带来扎实的数据整理与空间/系统化抽象能力，能将复杂的业务场景拆解为结构清晰的产品功能模块。",
+                highlights: ["✓ 系统化业务拆解", "✓ 自驱跨界学习力", "✓ 高效执行闭环"],
+                index: "06 / 07"
+            },
+            sql: {
+                badge: "[SQL BASICS]",
+                title: "基础数据查询与整理",
+                desc: "具备 SQL 基础了解，能够阅读和编写简单的 SELECT、WHERE、ORDER BY、GROUP BY 查询，用于基础数据筛选、分类汇总与结果核对。",
+                highlights: ["✓ 基础查询语句", "✓ 条件筛选与排序", "✓ 分组汇总与核对"],
+                index: "07 / 07"
+            }
+        };
+
+        function selectSkill(skillKey) {
+            document.querySelectorAll('.skill-tag').forEach(tag => {
+                tag.className = "skill-tag shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-black transition-all duration-200 flex items-center gap-2";
+            });
+            const activeTag = document.getElementById(`tag-${skillKey}`);
+            if (activeTag) {
+                activeTag.className = "skill-tag active shrink-0 px-4 py-2 rounded-full text-xs font-medium border border-slate-900 bg-slate-900 text-white transition-all duration-200 flex items-center gap-2 shadow-md";
+            }
+
+            const data = skillsData[skillKey] || skillsData.insight;
+            const screenContent = document.getElementById('skill-screen-content');
+            screenContent.classList.add('opacity-0', 'translate-y-2');
+
+            setTimeout(() => {
+                document.getElementById('skill-screen-badge').innerText = data.badge;
+                document.getElementById('skill-screen-title').innerText = data.title;
+                document.getElementById('skill-screen-desc').innerText = data.desc;
+                document.getElementById('skill-screen-index').innerText = data.index;
+
+                const hlContainer = document.getElementById('skill-screen-highlights');
+                hlContainer.innerHTML = data.highlights
+                    .map(item => `<span class="bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">${item}</span>`)
+                    .join('');
+
+                screenContent.classList.remove('opacity-0', 'translate-y-2');
+            }, 180);
+        }
+
+        const GAME_DEMO_URL = "https://jiangjiao2004.github.io/you2/";
+
+        function openGameModal() {
+            const modal = document.getElementById('game-modal');
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeGameModal() {
+            const modal = document.getElementById('game-modal');
+            if (!modal) return;
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function openGameDemo() {
+            if (!GAME_DEMO_URL) {
+                showToast('在线试玩链接待补充，请先在代码中填入游戏网址');
+                openGameModal();
+                return;
+            }
+            window.open(GAME_DEMO_URL, '_blank', 'noopener,noreferrer');
+        }
+
+        function openMacModal() {
+            const modal = document.getElementById('mac-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeMacModal() {
+            const modal = document.getElementById('mac-modal');
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function openPhoneModal() {
+            openOpsModal();
+        }
+
+        function closePhoneModal() {
+            closeOpsModal();
+        }
+
+        function openOpsModal() {
+            const modal = document.getElementById('ops-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeOpsModal() {
+            const modal = document.getElementById('ops-modal');
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function openImageLightbox(src, title) {
+            const lightbox = document.getElementById('image-lightbox');
+            const image = document.getElementById('lightbox-image');
+            const label = document.getElementById('lightbox-title');
+
+            if (!lightbox || !image || !label) return;
+
+            image.src = src;
+            image.alt = title || 'Evidence image';
+            label.innerText = title || 'Evidence Preview';
+
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeImageLightbox() {
+            const lightbox = document.getElementById('image-lightbox');
+            const image = document.getElementById('lightbox-image');
+
+            if (!lightbox || !image) return;
+
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                image.src = '';
+            }, 300);
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast-message');
+            document.getElementById('toast-text').innerText = text;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-3');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-3');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 2400);
+        }
+
+        function copyToClipboard(text, message) {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast(message);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGameModal();
+                closeMacModal();
+                closeOpsModal();
+                closeImageLightbox();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            const lightbox = document.getElementById('image-lightbox');
+            if (lightbox && e.target === lightbox) {
+                closeImageLightbox();
+            }
+            const gameModal = document.getElementById('game-modal');
+            if (gameModal && e.target === gameModal) {
+                closeGameModal();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll(".reveal-item").forEach((el) => observer.observe(el));
+
+            const cursorDot = document.getElementById("cursor-dot");
+            const cursorRing = document.getElementById("cursor-ring");
+            const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+            if (cursorDot && cursorRing && finePointer) {
+                const moveCursor = (event) => {
+                    const { clientX, clientY } = event;
+                    cursorDot.style.opacity = "1";
+                    cursorRing.style.opacity = "1";
+                    cursorDot.style.transform = `translate(${clientX}px, ${clientY}px) translate(-50%, -50%)`;
+                    cursorRing.style.transform = `translate(${clientX}px, ${clientY}px) translate(-50%, -50%)`;
+                };
+
+                window.addEventListener("mousemove", moveCursor);
+                window.addEventListener("mouseleave", () => {
+                    cursorDot.style.opacity = "0";
+                    cursorRing.style.opacity = "0";
+                });
+
+                document.querySelectorAll("a, button, [onclick], input, textarea, select").forEach((node) => {
+                    node.addEventListener("mouseenter", () => cursorRing.classList.add("is-hovering"));
+                    node.addEventListener("mouseleave", () => cursorRing.classList.remove("is-hovering"));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
